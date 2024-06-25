@@ -1,0 +1,44 @@
+Estatística Descritiva
+
+OBS: O csv foi importado em file -> Import dataset (base)
+e não em read.csv()
+
+#Aqui mudamos o diretorio de trabalho do R
+setwd(dir ="C:\\Users\\Davi\\Desktop\\Estatistica" )
+
+#base muito grande, usaremos amostra de 10000
+amostra <- SINASC_2010[sample(nrow(SINASC_2010), 5000, replace = FALSE), ]
+
+#Instalando bibliotecas
+install.packages("dplyr")
+install.packages("ggplot2")
+
+#carregando biblioteca
+library(ggplot2)
+
+#histograma simples da idade das maes
+hist(amostra$IDADEMAE)
+
+#histograma usando ggplot2
+ggplot(data = amostra, aes(x = IDADEMAE)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+  labs(x = "Idade da mãe", y = "Contagem") +
+  scale_x_continuous(breaks = seq(10, 50, by = 5)) +
+  ggtitle("Histograma da Idade das Mães") +
+  theme_minimal()
+
+#Teste QQ normalidade 
+
+qqnorm(amostra$IDADEMAE
+qqline(amostra$IDADEMAE)
+
+#teste de Shapiro
+
+Shapiro.test(amostra$IDADEMAE)
+	Shapiro-Wilk normality test
+
+data:  amostra$IDADEMAE
+W = 0.96438, p-value < 2.2e-16
+
+
+
