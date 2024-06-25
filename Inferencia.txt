@@ -1,0 +1,24 @@
+
+#Inferences estatistica
+
+#validação e normalidade
+hist(dados_vaginal$PESO)
+hist(dados_vaginal$PESO)
+
+qqnorm(dados_vaginal$IDADEMAE)
+qqline(dados_vaginal$IDADEMAE)
+
+shapiro.test(dados_vaginal$PESO)
+shapiro.test(dados_cesario$PESO)
+
+var.test(x = dados_vaginal$PESO, 
+         y = dados_cesario$PESO, 
+         alternative = "two.sided", 
+         conf.level = .95)
+
+Teste T
+t.test(    x = dados_vaginal$PESO, 
+           y = dados_cesario$PESO, 
+           alternative = "two.sided", 
+           paired = FALSE,
+           conf.level = .95)
