@@ -34,11 +34,51 @@ qqline(amostra$IDADEMAE)
 
 #teste de Shapiro
 
-Shapiro.test(amostra$IDADEMAE)
-	Shapiro-Wilk normality test
+shapiro.test(amostra$IDADEMAE)
+#============================================================
 
-data:  amostra$IDADEMAE
-W = 0.96438, p-value < 2.2e-16
 
+#Inferences estatistica
+
+#validação e normalidade
+hist(dados_vaginal$PESO)
+hist(dados_vaginal$PESO)
+
+qqnorm(dados_vaginal$IDADEMAE)
+qqline(dados_vaginal$IDADEMAE)
+
+shapiro.test(dados_vaginal$PESO)
+shapiro.test(dados_cesario$PESO)
+
+var.test(x = dados_vaginal$PESO, 
+         y = dados_cesario$PESO, 
+         alternative = "two.sided", 
+         conf.level = .95)
+
+Teste T
+t.test(    x = dados_vaginal$PESO, 
+           y = dados_cesario$PESO, 
+           alternative = "two.sided", 
+           paired = FALSE,
+           conf.level = .95)
+
+# ===========================================================
+
+#Probabilidade
+
+# Eliminando N/A
+dados_sem_na <- amostra[!is.na(amostra$PARTO) & !is.na(amostra$RACACOR), ]
+
+cesario_branco <- sum(dados_sem_na$PARTO == "2" & dados_sem_na$RACACOR == "1")
+
+total_cesario <- sum(dados_sem_na$PARTO == "2")
+
+#total de registros sem n/a
+total_linhas_a <- nrow(dados_sem_na)
+
+#tirando probs isoladas
+prob_cesario_branco <- cesario_branco/total_linhas_a
+prob_cesario <- total_cesario/total_linhas_a
+resultado <- prob_cesario_branco/prob_cesario
 
 
